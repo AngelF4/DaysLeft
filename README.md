@@ -2,8 +2,6 @@
 
 DaysLeft is an iOS application built with SwiftUI that helps you keep track of the days remaining until important events. It includes a configurable widget so you can view your countdowns directly from the Home Screen or Lock Screen.
 
-![App Icon](DaysLeft/Assets.xcassets/AppIcon.appiconset/iconLeft.png)
-
 ## Features
 
 - Create, edit and delete events with target dates
@@ -11,7 +9,6 @@ DaysLeft is an iOS application built with SwiftUI that helps you keep track of t
 - Pin important events to the top of the list
 - Haptic feedback on important actions
 - Home Screen widget with small and medium layouts
-- Siri / AppIntent support for selecting an event for the widget
 
 ## Getting Started
 
@@ -33,9 +30,7 @@ DaysLeft provides a simple way to count down to multiple upcoming events, such a
 
 ## Screenshots
 
-> Replace the placeholders below with real screenshots of the app and widget.
-
 | App | Widget |
 |-----|--------|
-| ![App Screenshot](path/to/app_screenshot.png) | ![Widget Screenshot](path/to/widget_screenshot.png) |
+| ![App Screenshot](DaysLeft/Assets.xcassets/appScreenshot.imageset/appScreenshot.png) | ![Widget Screenshot](DaysLeft/Assets.xcassets/widgetScreenshot.imageset/widgetScreenshot.png) |
 
