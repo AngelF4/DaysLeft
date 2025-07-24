@@ -18,9 +18,7 @@ class ViewModel {
     var error: String?
     var days: [DayModel] = []
     var daySelected: DayModel?
-    
     var modelContext: ModelContext
-    let defaults = UserDefaults(suiteName: "group.com.hega.tuapp")
     
     init(modelContext: ModelContext) {
         self.modelContext = modelContext
@@ -42,28 +40,26 @@ class ViewModel {
             let descriptor = FetchDescriptor<DayModel>(sortBy: [SortDescriptor(\.targetDate)])
             days = try modelContext.fetch(descriptor)
             
-            // Eliminar días con targetDate en el pasado
+            // Delete days with targetDate in the past
             let now = Calendar.current.startOfDay(for: .now)
             let expiredDays = days.filter { $0.targetDate < now }
             for expired in expiredDays {
                 modelContext.delete(expired)
             }
             
-            // Guardar cambios después de eliminar
+            // Save changes after deletion
             if !expiredDays.isEmpty {
                 try modelContext.save()
             }
             
-            // Actualizar lista después de eliminar
+            // Update list after deletion
             days = days.filter { $0.targetDate >= now }
             
-            // Ordenar días actualizados
+            // Sort updated days
             days.sort { $0.daysUntilTarget < $1.daysUntilTarget }
             
         } catch {
-            self.error = "No se pudo cargar la lista de días"
-            HapticViewModel.shared.vibrate(type: .error)
-            print("Fetch failed")
+            makeError("Failed to load days list", error: error)
         }
     }
     
@@ -92,16 +88,15 @@ class ViewModel {
             try modelContext.save()
             fetchData()
         } catch {
-            self.error = "No se pudo guardar el día"
-            fatalError("No se pudo guardar el día")
+            makeError("Failed to save the day", error: error)
         }
     }
     
     func updateDay() {
-        guard let name = daySelected?.name as? String else { return }
-        guard let index = days.firstIndex(of: days.first(where: { $0.name == name })!) else { return }
-        days[index].name = name
-        days[index].targetDate = targetDate
+        guard let day = daySelected else { return }
+        day.name = name
+        day.targetDate = targetDate
+        
         do {
             try modelContext.save()
             fetchData()
@@ -110,8 +105,7 @@ class ViewModel {
             showForm = false
             WidgetCenter.shared.reloadAllTimelines()
         } catch {
-            self.error = "No se pudo guardar el día"
-            HapticViewModel.shared.vibrate(type: .error)
+            makeError("Failed to save the day", error: error)
         }
     }
     
@@ -129,5 +123,12 @@ extension ViewModel {
         error = nil
         daySelected = nil
         targetDate = .now
+    }
+    func makeError(_ message: String, error: Error) {
+        self.error = message
+        HapticViewModel.shared.vibrate(type: .error)
+#if DEBUG
+        print(error.localizedDescription)
+#endif
     }
 }

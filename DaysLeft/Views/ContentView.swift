@@ -24,7 +24,7 @@ struct ContentView: View {
                                viewModel: $viewModel)
                     }
                     if !viewModel.daysPinned.isEmpty {
-                        Spacer(minLength: 20) //Para una separación clara
+                        Spacer(minLength: 20) // For clear separation
                             .listRowBackground(Color.clear)
                     }
                 }

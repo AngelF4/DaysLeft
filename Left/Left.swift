@@ -17,7 +17,7 @@ struct Provider: AppIntentTimelineProvider {
     func placeholder(in context: Context) -> SimpleEntry {
         SimpleEntry(
             date: Calendar.current.date(from: DateComponents(year: 2025, month: 7, day: 5))!,
-            day: DayModelEntity(id: UUID(), name: "Ejemplo", targetDate: Calendar.current.date(from: DateComponents(year: 2025, month: 7, day: 15))!)
+            day: DayModelEntity(id: UUID(), name: "Example", targetDate: Calendar.current.date(from: DateComponents(year: 2025, month: 7, day: 15))!)
         )
     }
     
@@ -72,7 +72,7 @@ struct LeftEntryView : View {
             if let day = entry.day {
                 WidgetTitles(day: day, dayleft: dayleft)
             } else {
-                Text("Selecciona un día")
+                Text("Select a day")
                     .font(.headline)
                     .foregroundStyle(.white)
                     .lineLimit(1)
@@ -87,7 +87,7 @@ struct LeftEntryView : View {
             if let day = entry.day {
                 WidgetTitles(day: day, dayleft: dayleft, isMedium: true)
             } else {
-                Text("Selecciona un día")
+                Text("Select a day")
                     .font(.headline)
                     .foregroundStyle(.white)
                     .lineLimit(1)
@@ -120,8 +120,8 @@ struct Left: Widget {
             LeftEntryView(entry: entry)
                 .containerBackground(Color("WidgetBackground"), for: .widget)
         }
-        .configurationDisplayName("Cuenta días restantes")
-        .description("Un calendario que muestra los dias que falta para una fecha")
+        .configurationDisplayName("Days Remaining Counter")
+        .description("A calendar that shows the number of days remaining until a specified date.")
         .supportedFamilies([.systemSmall, .systemMedium])
     }
 }
@@ -132,10 +132,10 @@ struct Left: Widget {
     Left()
 } timeline: {
     SimpleEntry(date: Calendar.current.date(from: DateComponents(year: 2025, month: 1, day: 1))!,
-                day: DayModelEntity(id: UUID(), name: "Ejemplo", targetDate: Calendar.current.date(from: DateComponents(year: 2025, month: 7, day: 1))!))
+                day: DayModelEntity(id: UUID(), name: "Example", targetDate: Calendar.current.date(from: DateComponents(year: 2025, month: 7, day: 1))!))
     SimpleEntry(date: Calendar.current.date(from: DateComponents(year: 2025, month: 7, day: 5))!,
-                day: DayModelEntity(id: UUID(), name: "Ejemplo", targetDate: Calendar.current.date(from: DateComponents(year: 2025, month: 7, day: 15))!))
+                day: DayModelEntity(id: UUID(), name: "Example", targetDate: Calendar.current.date(from: DateComponents(year: 2025, month: 7, day: 15))!))
     
     SimpleEntry(date: Calendar.current.date(from: DateComponents(year: 2025, month: 9, day: 10))!,
-                day: DayModelEntity(id: UUID(), name: "Ejemplo", targetDate: Calendar.current.date(from: DateComponents(year: 2025, month: 9, day: 25))!))
+                day: DayModelEntity(id: UUID(), name: "Example", targetDate: Calendar.current.date(from: DateComponents(year: 2025, month: 9, day: 25))!))
 }

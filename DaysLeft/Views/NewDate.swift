@@ -13,10 +13,10 @@ struct NewDate: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 16) {
-                TextField("Nombre", text: $viewModel.name, axis: .vertical)
+                TextField("Name", text: $viewModel.name, axis: .vertical)
                     .font(.title.bold())
                     .submitLabel(.next)
-                DatePicker("Fecha objetivo", selection: $viewModel.targetDate, in: Date()..., displayedComponents: [.date])
+                DatePicker("Target Date", selection: $viewModel.targetDate, in: Date()..., displayedComponents: [.date])
                 if let error = viewModel.error {
                     Text(error).foregroundColor(.red)
                 }
@@ -26,7 +26,7 @@ struct NewDate: View {
         }
         .toolbar {
             ToolbarItem(placement: .principal) {
-                Text("Nueva fecha").monospaced().bold()
+                Text("New Date").monospaced().bold()
             }
             ToolbarItem(placement: .topBarTrailing) {
                 if viewModel.daySelected != nil {
