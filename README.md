@@ -34,3 +34,7 @@ DaysLeft provides a simple way to count down to multiple upcoming events, such a
 |-----|--------|
 | ![App Screenshot](DaysLeft/Assets.xcassets/appScreenshot.imageset/appScreenshot.png) | ![Widget Screenshot](DaysLeft/Assets.xcassets/widgetScreenshot.imageset/widgetScreenshot.png) |
 
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).
